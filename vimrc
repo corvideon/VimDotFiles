@@ -6,12 +6,14 @@ if has("win32")
   source $VIMRUNTIME/vimrc_example.vim
   source $VIMRUNTIME/mswin.vim
   behave mswin
-  set guifont=Consolas:h10
+  "set guifont=Consolas:h10
+  set guifont=Droid_Sans_Mono_Dotted_for_Powe:h9
   set rtp+=~/.vim/vimfiles/bundle/Vundle.vim/
   let vundlepath='~/.vim/vimfiles/bundle'
 else
+  " set guifont=Menlo:h12
+  set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
   set rtp+=~/.vim/bundle/vundle/
-  set guifont=Menlo:h12
 endif
 
 " ------------------------------------------------------------------
@@ -37,20 +39,36 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'yegappan/mru'
 Plugin 'chrisbra/histwin.vim'
 Plugin 'Raimondi/delimitMate'
+Plugin 'Yggdroot/indentLine'
+Plugin 'reedes/vim-pencil'
 call vundle#end()
-
 " ------------------------------------------------------------------
 " Colorscheme Config
 " ------------------------------------------------------------------
 
 syntax enable
 colorscheme vylight
-let g:airline_theme='silver'
-"let g:airline_theme='papercolor'
+
+" ------------------------------------------------------------------
+" Vim-airline Config
+" ------------------------------------------------------------------
+
+"let g:airline_theme='silver'
+
+let g:airline_theme='papercolor'
+
 " show airline by default
-set laststatus=2
-set g:airline_powerline_fonts = 1
-set laststatus=2  
+set laststatus=2 
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" show font symbols
+let g:airline_powerline_fonts = 1
+
 
 " ------------------------------------------------------------------
 " General Config
@@ -85,7 +103,21 @@ set showmatch
 
 
 " ------------------------------------------------------------------
-" Custom key bindings and commands
+"  NERDTree
 " ------------------------------------------------------------------
 
+
+" leader key
+let mapleader = ","
+
 :command NT NERDTree
+map <leader>n :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
+
+
+" ------------------------------------------------------------------
+"  Show tabs
+" ------------------------------------------------------------------
+
+let g:indentLine_enabled = 0
+nmap ,t :IndentLinesToggle<CR>
